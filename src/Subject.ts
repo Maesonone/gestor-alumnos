@@ -1,14 +1,20 @@
 export class Subject{
-    private nombre: String;
+    private name: String;
     private id: number;
+    private static _id: number = 1;
 
-    constructor(nombre: String, id: number){
-        this.nombre = nombre;
-        this.id = id;
+    constructor(name: String){
+        this.name = name;
+        this.id = Subject._id;
+        Subject._id++
     }
 
-    public get nombre_():String{
-        return this.nombre;
+    public get name_():String{
+        return this.name;
+    }
+
+    public get id_():number{
+        return this.id
     }
 
 }

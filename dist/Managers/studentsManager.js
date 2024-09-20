@@ -12,12 +12,40 @@ class StudentManager {
         return this.Student_;
     }
     getStudentID(id) {
-        let _Student = [];
+        let _Student;
         this.Student_.forEach(element => {
             if (id === element.id_) {
-                console.log(`ID: ${element.id_}, Name: ${element.name_}, Surname: ${element.surname_}, Age: ${element.age_}`);
+                _Student = element;
             }
         });
+        return _Student;
+    }
+    getStudentName(name) {
+        let _Student = [];
+        this.Student_.forEach(element => {
+            if (name === element.name_) {
+                _Student.push(element);
+            }
+        });
+        return _Student;
+    }
+    getStudentSurname(surname) {
+        let _Student = [];
+        this.Student_.forEach(element => {
+            if (surname === element.surname_) {
+                _Student.push(element);
+            }
+        });
+        return _Student;
+    }
+    getStudentAge(age) {
+        let _Student = [];
+        this.Student_.forEach(element => {
+            if (age === element.age_) {
+                _Student.push(element);
+            }
+        });
+        return _Student;
     }
 }
 exports.StudentManager = StudentManager;

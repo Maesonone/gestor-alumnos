@@ -2,13 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Subject = void 0;
 class Subject {
-    constructor(nombre, id) {
-        this.nombre = nombre;
-        this.id = id;
+    constructor(name) {
+        this.name = name;
+        this.id = Subject._id;
+        Subject._id++;
     }
-    get nombre_() {
-        return this.nombre;
+    get name_() {
+        return this.name;
+    }
+    get id_() {
+        return this.id;
     }
 }
 exports.Subject = Subject;
+Subject._id = 1;
 //# sourceMappingURL=Subject.js.map
