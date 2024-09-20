@@ -1,4 +1,4 @@
-class subjects{
+export class Subject{
     private nombre: String;
     private id: number;
 

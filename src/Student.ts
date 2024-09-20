@@ -1,4 +1,4 @@
-class students{
+export class Student{
     private name: string;
     private surname: string;
     private age: number;
@@ -9,8 +9,8 @@ class students{
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.id = students.id_;
-        students.id_++
+        this.id = Student.id_;
+        Student.id_++
     }
 
     get name_(): string{
@@ -44,4 +44,9 @@ class students{
     set id_(id:number){
         this.id = id;
     }
+
+    //toString(){
+        //console.log(`ID: ${this.id}, Name: ${this.name}, Surname: ${this.surname}, Age: ${this.age}`)
+    //}
+
 }
