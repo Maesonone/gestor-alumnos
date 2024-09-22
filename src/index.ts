@@ -2,12 +2,17 @@ import * as readline from 'readline-sync';
 import { Subject } from './Subject.js';
 import { Student } from './Student.js';
 import {StudentManager} from './Managers/studentsManager.js';
-import {SubjectManager} from './Managers/subjectsManagers.js'
+import {SubjectManager} from './Managers/subjectsManagers.js';
+import { mark } from './mark.js';
 
 const StudentManager_ = new StudentManager();
 const subjectManager_ = new SubjectManager();
 
 let salir = false;
+
+function marks(){
+
+}
 
 function listMenuStudents(){
     const opciones = ["List every student.", "List by ID.", "List by Name.", "List by Surname.", "List by age.", "Go back."];
@@ -99,7 +104,7 @@ function main(){
 
     if(!salir){
 
-        const opciones = ["Create student.", "List Student.", "Create subject.", "List subjects.", "Exit."];
+        const opciones = ["Create student.", "Remove student", "List Student.", "Create subject.", "Remove subject", "List subjects.", "Add mark.", "Remove mark.", "Exit."];
         const indice = readline.keyInSelect(opciones, "Seleccione una opción: ");
 
         if(indice === -1){
@@ -114,19 +119,32 @@ function main(){
                 StudentManager_.addStudent(new Student('Lucía', 'Flores', 30))
                 break;
             case 1:
-                listMenuStudents();
+                let id = Number(readline.question("Type in the Id of the student to remove: "));
+                StudentManager_.removeStudent(id);
                 break;
             case 2:
+                listMenuStudents();
+                break;
+            case 3:
                 subjectManager_.addSubject(new Subject('English'))
                 subjectManager_.addSubject(new Subject('Maths'))
                 subjectManager_.addSubject(new Subject('History'))
                 subjectManager_.addSubject(new Subject('Biology'))
                 subjectManager_.addSubject(new Subject('Spanish'))
                 break;
-            case 3:
+            case 4:
+                let id_ = Number(readline.question("Type in the Id of the subject to remove: "));
+                subjectManager_.removeSubject(id_);
+                break;
+            case 5:
                 listMenuSubjects();
                 break;
-            case 4:
+            case 6:
+
+                break;
+            case 7:
+                break;
+            case 8:
                 console.log("Thanks for using my program.")
                 salir = true;
 

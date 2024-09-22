@@ -12,6 +12,12 @@ export class StudentManager{
         this.Student_.push(Student)
     }
 
+    removeStudent(id: number): Student[]{
+        let a: Student[] = [];
+        a = this.Student_.splice(id-1, 1,);
+        return a;
+    }
+
     getStudents(): Student[]{
         return this.Student_
     }

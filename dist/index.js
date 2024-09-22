@@ -31,6 +31,8 @@ const subjectsManagers_js_1 = require("./Managers/subjectsManagers.js");
 const StudentManager_ = new studentsManager_js_1.StudentManager();
 const subjectManager_ = new subjectsManagers_js_1.SubjectManager();
 let salir = false;
+function marks() {
+}
 function listMenuStudents() {
     const opciones = ["List every student.", "List by ID.", "List by Name.", "List by Surname.", "List by age.", "Go back."];
     const indice = readline.keyInSelect(opciones, "Choose an option: ");
@@ -117,7 +119,7 @@ function listMenuSubjects() {
 }
 function main() {
     if (!salir) {
-        const opciones = ["Create student.", "List Student.", "Create subject.", "List subjects.", "Exit."];
+        const opciones = ["Create student.", "Remove student", "List Student.", "Create subject.", "List subjects.", "Add mark.", "Remove mark.", "Exit."];
         const indice = readline.keyInSelect(opciones, "Seleccione una opción: ");
         if (indice === -1) {
             console.log("Operación cancelada.");
@@ -130,19 +132,27 @@ function main() {
                 StudentManager_.addStudent(new Student_js_1.Student('Lucía', 'Flores', 30));
                 break;
             case 1:
-                listMenuStudents();
+                let id = Number(readline.question("Type in the Id of the student to remove: "));
+                StudentManager_.removeStudent(id);
                 break;
             case 2:
+                listMenuStudents();
+                break;
+            case 3:
                 subjectManager_.addSubject(new Subject_js_1.Subject('English'));
                 subjectManager_.addSubject(new Subject_js_1.Subject('Maths'));
                 subjectManager_.addSubject(new Subject_js_1.Subject('History'));
                 subjectManager_.addSubject(new Subject_js_1.Subject('Biology'));
                 subjectManager_.addSubject(new Subject_js_1.Subject('Spanish'));
                 break;
-            case 3:
+            case 4:
                 listMenuSubjects();
                 break;
-            case 4:
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
                 console.log("Thanks for using my program.");
                 salir = true;
         }

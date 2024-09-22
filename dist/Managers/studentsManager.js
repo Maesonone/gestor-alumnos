@@ -8,6 +8,11 @@ class StudentManager {
     addStudent(Student) {
         this.Student_.push(Student);
     }
+    removeStudent(id) {
+        let a = [];
+        a = this.Student_.splice(id - 1, 1);
+        return a;
+    }
     getStudents() {
         return this.Student_;
     }

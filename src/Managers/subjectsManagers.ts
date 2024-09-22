@@ -12,6 +12,12 @@ export class SubjectManager{
         this.Subjects_.push(subject)
     }
 
+    removeSubject(id: number): Subject[]{
+        let a: Subject[] = [];
+        a = this.Subjects_.splice(id-1, 1,);
+        return a;
+    }
+
     getSubject(): Subject[]{
         return this.Subjects_
     }
