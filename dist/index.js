@@ -28,10 +28,38 @@ const Subject_js_1 = require("./Subject.js");
 const Student_js_1 = require("./Student.js");
 const studentsManager_js_1 = require("./Managers/studentsManager.js");
 const subjectsManagers_js_1 = require("./Managers/subjectsManagers.js");
+const Mark_js_1 = require("./Mark.js");
+const marksManager_js_1 = require("./Managers/marksManager.js");
 const StudentManager_ = new studentsManager_js_1.StudentManager();
 const subjectManager_ = new subjectsManagers_js_1.SubjectManager();
+const marksManager_ = new marksManager_js_1.marksManager();
 let salir = false;
-function marks() {
+function addMarks() {
+    let idSt = Number(readline.question("Type in the Id of the student to mark: "));
+    let idSu = Number(readline.question("Type in the Id of the subject to mark: "));
+    let mark_ = Number(readline.question("Type in the mark to assing: "));
+    marksManager_.addMark(new Mark_js_1.Mark(mark_, idSt, idSu));
+    let a = StudentManager_.getStudentID(idSt);
+    let b = subjectManager_.getSubjectID(idSu);
+    if (a != undefined && b != undefined) {
+        console.log(`Name: ${a.name_}, Surname: ${a.surname_}, Subject: ${b.name_}, Mark: ${mark_}`);
+    }
+    else {
+        console.log("Something went wrong.");
+    }
+}
+function removeMark() {
+    let idSt = Number(readline.question("Type in the Id of the student to mark: "));
+    let idSu = Number(readline.question("Type in the Id of the subject to mark: "));
+    marksManager_.removeMark(idSt, idSu);
+    let a = StudentManager_.getStudentID(idSt);
+    let b = subjectManager_.getSubjectID(idSu);
+    if (a != undefined && b != undefined) {
+        console.log(`Mark of ${a.name_} in ${b.name_} removed correctly.`);
+    }
+    else {
+        console.log("Something went wrong.");
+    }
 }
 function listMenuStudents() {
     const opciones = ["List every student.", "List by ID.", "List by Name.", "List by Surname.", "List by age.", "Go back."];
@@ -119,7 +147,7 @@ function listMenuSubjects() {
 }
 function main() {
     if (!salir) {
-        const opciones = ["Create student.", "Remove student", "List Student.", "Create subject.", "List subjects.", "Add mark.", "Remove mark.", "Exit."];
+        const opciones = ["Create student.", "Remove student", "List Student.", "Create subject.", "Remove subject", "List subjects.", "Add mark.", "List marks.", "Remove mark.", "Exit."];
         const indice = readline.keyInSelect(opciones, "Seleccione una opción: ");
         if (indice === -1) {
             console.log("Operación cancelada.");
@@ -146,13 +174,27 @@ function main() {
                 subjectManager_.addSubject(new Subject_js_1.Subject('Spanish'));
                 break;
             case 4:
-                listMenuSubjects();
+                let id_ = Number(readline.question("Type in the Id of the subject to remove: "));
+                subjectManager_.removeSubject(id_);
                 break;
             case 5:
+                listMenuSubjects();
                 break;
             case 6:
+                addMarks();
                 break;
             case 7:
+                let a = marksManager_.getMarks();
+                a.forEach(mark => {
+                    let b = StudentManager_.getStudentID(mark._idSt);
+                    let c = subjectManager_.getSubjectID(mark._idSu);
+                    console.log(`Name: ${b === null || b === void 0 ? void 0 : b.name_}, Subject: ${c === null || c === void 0 ? void 0 : c.name_}, Mark: ${mark._mark}`);
+                });
+                break;
+            case 8:
+                removeMark();
+                break;
+            case 9:
                 console.log("Thanks for using my program.");
                 salir = true;
         }

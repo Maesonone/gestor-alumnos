@@ -8,6 +8,11 @@ class SubjectManager {
     addSubject(subject) {
         this.Subjects_.push(subject);
     }
+    removeSubject(id) {
+        let a = [];
+        a = this.Subjects_.splice(id - 1, 1);
+        return a;
+    }
     getSubject() {
         return this.Subjects_;
     }

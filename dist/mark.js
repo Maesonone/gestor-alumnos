@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mark = void 0;
-class mark {
+exports.Mark = void 0;
+class Mark {
     constructor(mark, idSt, idSu) {
         this.mark = mark;
         this.idSt = idSt;
         this.idSu = idSu;
+        this.id = Mark.id_;
+        this.id++;
     }
     get _mark() {
         return this.mark;
@@ -15,6 +17,9 @@ class mark {
     }
     get _idSu() {
         return this.idSu;
+    }
+    get _id() {
+        return this.id;
     }
     set mark_(mark) {
         this.mark = mark;
@@ -26,5 +31,6 @@ class mark {
         this.idSu = idSu;
     }
 }
-exports.mark = mark;
-//# sourceMappingURL=mark.js.map
+exports.Mark = Mark;
+Mark.id_ = 1;
+//# sourceMappingURL=Mark.js.map

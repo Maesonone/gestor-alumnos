@@ -136,7 +136,7 @@ function main(){
 
     if(!salir){
 
-        const opciones = ["Create student.", "Remove student", "List Student.", "Create subject.", "Remove subject", "List subjects.", "Add mark.", "Remove mark.", "Exit."];
+        const opciones = ["Create student.", "Remove student", "List Student.", "Create subject.", "Remove subject", "List subjects.", "Add mark.", "List marks.", "Remove mark.", "Exit."];
         const indice = readline.keyInSelect(opciones, "Seleccione una opción: ");
 
         if(indice === -1){
@@ -175,9 +175,19 @@ function main(){
                 addMarks();
                 break;
             case 7:
-                removeMark();
+                let a = marksManager_.getMarks();
+
+                a.forEach(mark => {
+                    let b: Student | undefined = StudentManager_.getStudentID(mark._idSt);
+                    let c: Subject | undefined = subjectManager_.getSubjectID(mark._idSu); 
+                    
+                    console.log (`Name: ${b?.name_}, Subject: ${c?.name_}, Mark: ${mark._mark}`)
+                });
                 break;
             case 8:
+                removeMark();
+                break;
+            case 9:
                 console.log("Thanks for using my program.")
                 salir = true;
 
