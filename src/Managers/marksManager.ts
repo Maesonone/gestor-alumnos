@@ -1,24 +1,32 @@
-import { mark } from "../mark";
+import { Mark } from "../Mark";
 
 export class marksManager{
 
-    private marks: mark[] = [];
+    private marks: Mark[] = [];
 
     constructor(){
 
     }
 
-    addMark(mark: mark){
+    addMark(mark: Mark){
         this.marks.push(mark);
     }
 
-    removeMark(id: number): mark[]{
-        let a: mark[] = [];
-        a = this.marks.splice(id-1, 1,);
+    removeMark(idSt: number, idSu: number): Mark[]{
+        let a: Mark[] = [];
+        a = this.marks;
+        a.forEach(mark => {
+            if(mark.idSt_ === idSt && mark.idSu_ === idSu){
+                a.splice(mark._id-1, 1);
+            }else{
+                console.log("Something went wrong.");
+                a = [];
+            }
+        });
         return a;
     }
 
-    getMarks(): mark[]{
+    getMarks(): Mark[]{
         return this.marks
     }
 

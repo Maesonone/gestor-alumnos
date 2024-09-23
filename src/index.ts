@@ -3,16 +3,48 @@ import { Subject } from './Subject.js';
 import { Student } from './Student.js';
 import {StudentManager} from './Managers/studentsManager.js';
 import {SubjectManager} from './Managers/subjectsManagers.js';
-import { mark } from './mark.js';
+import { Mark } from './Mark.js';
+import { marksManager } from './Managers/marksManager.js';
 
 const StudentManager_ = new StudentManager();
 const subjectManager_ = new SubjectManager();
+const marksManager_ = new marksManager();
 
 let salir = false;
 
-function marks(){
+function addMarks(){
+    let idSt = Number(readline.question("Type in the Id of the student to mark: "));
+    let idSu = Number(readline.question("Type in the Id of the subject to mark: "));
+    let mark_ = Number(readline.question("Type in the mark to assing: "));
 
+    marksManager_.addMark(new Mark(mark_, idSt, idSu));
+
+    let a: Student | undefined = StudentManager_.getStudentID(idSt);
+    let b: Subject | undefined = subjectManager_.getSubjectID(idSu);
+
+    if(a != undefined && b != undefined){
+        console.log(`Name: ${a.name_}, Surname: ${a.surname_}, Subject: ${b.name_}, Mark: ${mark_}`)
+        }else{
+            console.log("Something went wrong.");
+        }
 }
+
+function removeMark(){
+    let idSt = Number(readline.question("Type in the Id of the student to mark: "));
+    let idSu = Number(readline.question("Type in the Id of the subject to mark: "));
+
+    marksManager_.removeMark(idSt, idSu);
+
+    let a: Student | undefined = StudentManager_.getStudentID(idSt);
+    let b: Subject | undefined = subjectManager_.getSubjectID(idSu);
+
+    if(a != undefined && b != undefined){
+        console.log(`Mark of ${a.name_} in ${b.name_} removed correctly.`)
+        }else{
+            console.log("Something went wrong.");
+        }
+}
+
 
 function listMenuStudents(){
     const opciones = ["List every student.", "List by ID.", "List by Name.", "List by Surname.", "List by age.", "Go back."];
@@ -140,9 +172,10 @@ function main(){
                 listMenuSubjects();
                 break;
             case 6:
-
+                addMarks();
                 break;
             case 7:
+                removeMark();
                 break;
             case 8:
                 console.log("Thanks for using my program.")

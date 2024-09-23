@@ -14,7 +14,7 @@ export class StudentManager{
 
     removeStudent(id: number): Student[]{
         let a: Student[] = [];
-        a = this.Student_.splice(id-1, 1,);
+        a = this.Student_.splice(id-1, 1);
         return a;
     }
 

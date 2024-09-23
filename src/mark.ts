@@ -1,13 +1,17 @@
 
-export class mark{
+export class Mark{
     private mark: number;
     private idSt: number;
     private idSu: number;
+    private id: number;
+    private static id_: number = 1;
 
     constructor(mark: number, idSt: number, idSu:number){
         this.mark = mark;
         this.idSt = idSt;
         this.idSu = idSu;
+        this.id = Mark.id_;
+        this.id++;
     }
 
     get _mark(): number{
@@ -20,6 +24,10 @@ export class mark{
 
     get _idSu(): number{
         return this.idSu
+    }
+
+    get _id(): number{
+        return this.id;
     }
 
     set mark_(mark: number){

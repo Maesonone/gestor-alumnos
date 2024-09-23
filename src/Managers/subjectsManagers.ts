@@ -14,7 +14,7 @@ export class SubjectManager{
 
     removeSubject(id: number): Subject[]{
         let a: Subject[] = [];
-        a = this.Subjects_.splice(id-1, 1,);
+        a = this.Subjects_.splice(id-1, 1);
         return a;
     }
 
